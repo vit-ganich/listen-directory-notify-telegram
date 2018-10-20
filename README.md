@@ -1,7 +1,12 @@
 # ListenDir
-Simple program, which listens the specified directories and sends notifications when a new file was created.
-Notifications are being sent using the Telegram API via TLSharp library - https://github.com/sochix/TLSharp. (Copyright (c) 2015 Ilya Pirozhenko http://www.sochix.ru/)
+Simple program, which listens the specified directories and sends notifications when a new file was created.<br />
 
+Notifications are being sent using the Telegram API via TLSharp (c)
+
+### TLSharp
+Unofficial Telegram (http://telegram.org) client library implemented in C#.<br />
+https://github.com/sochix/TLSharp<br />
+Copyright (c) 2015 Ilya Pirozhenko http://www.sochix.ru/<br />
 
 ## Quick Telegram API Configuration
 Telegram API isn't that easy to start. You need to do some configuration first.
