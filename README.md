@@ -18,8 +18,9 @@ key="NewFilesSearchTimeout" value="600" - timeout in seconds<br />
 key="ApiId" value="**API_ID**" - your Telegram API ID <br />
 key="ApiHash" value="**API_HASH**" - your Telegram API hash<br />
 key="UserPhoneNumber" value="375291223344" - phone number of user, which will send the notifications<br />
-key="CodeFromTelegram" value="12345" - Telegram authorization code (received via SMS). <br />
-### If you dont have Telegram code - don't panic!<br />
-#### Start the program, and in a minute you will receive the authorization code via SMS. Enter it carefully in console.
+key="CodeFromTelegram" value="12345" - Telegram authorization code. You shouldn't change this value manually<br />
 key="RecipientType" value="channel" - You can choose "channel" or "user"<br />
 key="RecipientName" value="TestTestTestChannel" - User or cannel name<br />
+
+### If you dont have Telegram code - don't panic!<br />
+#### Start the program, and in a minute you will receive the authorization code via SMS. Enter it carefully in console, and if the code is valid, the authorization succeed and the file _session.dat_ will be created. You have to enter Telegram code in console only once - on the first program start.
