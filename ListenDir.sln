@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenDir", "ListenDir\ListenDir.csproj", "{87D87BB6-1B7F-495B-BB64-4E749E074EDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87D87BB6-1B7F-495B-BB64-4E749E074EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D87BB6-1B7F-495B-BB64-4E749E074EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D87BB6-1B7F-495B-BB64-4E749E074EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D87BB6-1B7F-495B-BB64-4E749E074EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1F52F05-D67E-496E-BF79-157950AD82ED}
+	EndGlobalSection
+EndGlobal
