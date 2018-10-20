@@ -24,4 +24,4 @@ key="RecipientName" value="TestTestTestChannel" - User or cannel name<br />
 
 ### If you dont have Telegram code - don't panic!<br />
 #### Start the program, and in a minute you will receive the authorization code via SMS.<br />
-Enter it carefully in console, and if the code is valid, the authorization will succeed and the file *_session.dat_* will be created. You have to enter Telegram code in console only once - on the first program start.
+Enter it carefully in console, and if the code is valid, the authorization will succeed and the file *_session.dat_* will be created. You have to enter Telegram code in console only once - on the first program start. Don't delete or replace the *_session.dat_* file!
