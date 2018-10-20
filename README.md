@@ -8,5 +8,6 @@ Telegram API isn't that easy to start. You need to do some configuration first.
 1. Create a [developer account](https://my.telegram.org/) in Telegram. 
 1. Goto [API development tools](https://my.telegram.org/apps) and copy **API_ID** and **API_HASH** from your account. 
 1. Open ListenDir.exe.config and set:
-<add key="ApiId" value="**API_ID**" />
-<add key="ApiHash" value="**API_HASH**" />
+
+<add key="ApiId" value="**API_ID**"
+<add key="ApiHash" value="**API_HASH**"
