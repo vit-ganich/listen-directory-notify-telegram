@@ -21,12 +21,14 @@ key="FilesExtension" value="trx" - extension for files to listen<br />
 key="TestResultsDir" value="C:\\test,C:\\test1,C:\\test2" - comma-separated full paths to folders<br />
 key="DateTimeFormat" value="MM-dd-yyyy HH-mm-ss"<br />
 key="NewFilesSearchTimeout" value="600" - timeout in seconds<br />
-key="ApiId" value="**API_ID**" - your Telegram API ID <br />
+key="ResultsLogFolder" value=".\Logs" - full path to folder with results list<br />
+key="ResultsLogFile" value="TestResults.log" - results file name<br />
+key="ApiId" value="**API_ID**" - your Telegram API ID<br />
 key="ApiHash" value="**API_HASH**" - your Telegram API hash<br />
 key="UserPhoneNumber" value="375291223344" - phone number of user, which will send the notifications<br />
-key="CodeFromTelegram" value="12345" - Telegram authorization code. You shouldn't change this value manually<br />
 key="RecipientType" value="channel" - You can choose "channel" or "user"<br />
 key="RecipientName" value="TestTestTestChannel" - User or cannel name<br />
+key="CodeFromTelegram" value="12345" - Telegram authorization code. You shouldn't change this value manually<br />
 
 ### If you dont have Telegram code - don't panic!<br />
 #### Start the program, and in a minute you will receive the authorization code via SMS.<br />
