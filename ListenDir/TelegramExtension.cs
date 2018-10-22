@@ -13,7 +13,7 @@ namespace TestResultsReminder
     {
         public static TelegramClient NewClient()
         {
-            return new TelegramClient(ConfigManager.ApiId, ConfigManager.ApiHash);
+            return new TelegramClient(ConfigReader.GetApiId(), ConfigReader.GetApiHash());
         }
 
         /// <summary>
@@ -28,21 +28,21 @@ namespace TestResultsReminder
 
             if (!client.IsUserAuthorized())
             {
-               var hash = await client.SendCodeRequestAsync(ConfigManager.UserPhoneNumber);
+               var hash = await client.SendCodeRequestAsync(ConfigReader.GetUserPhoneNumber());
                 // authorization code will be send to the specified phone number
                 var code = Helper.ReadTelegramCodeFromConsole();
 
-                var user = await client.MakeAuthAsync(ConfigManager.UserPhoneNumber, hash, code);
+                var user = await client.MakeAuthAsync(ConfigReader.GetUserPhoneNumber(), hash, code);
             }
         }
 
         public static async Task SendMessageAsync(string message)
         {
-            if (ConfigManager.RecipientType == "user")
+            if (ConfigReader.GetRecipientType() == "user")
             {
                 await SendMessageToUserAsync(message);
             }
-            else if(ConfigManager.RecipientType == "channel")
+            else if(ConfigReader.GetRecipientType() == "channel")
             {
                 await SendMessageToChannelAsync(message);
             }
@@ -56,7 +56,7 @@ namespace TestResultsReminder
             // get available contacts
             var result = await client.GetContactsAsync();
             // find recipient in contacts
-            TLUser user = result.Users.OfType<TLUser>().FirstOrDefault(x => x.Username == ConfigManager.RecipientName);
+            TLUser user = result.Users.OfType<TLUser>().FirstOrDefault(x => x.Username == ConfigReader.GetRecipientName());
             // send message
             await client.SendMessageAsync(new TLInputPeerUser() { UserId = user.Id }, message);
         }
@@ -72,7 +72,7 @@ namespace TestResultsReminder
             var chat = dialogs.Chats
                                     .Where(c => c.GetType() == typeof(TLChannel))
                                     .Cast<TLChannel>()
-                                    .FirstOrDefault(c => c.Title == ConfigManager.RecipientName);
+                                    .FirstOrDefault(c => c.Title == ConfigReader.GetRecipientName());
             // send message
             await client.SendMessageAsync(new TLInputPeerChannel() { ChannelId = chat.Id, AccessHash = chat.AccessHash.Value }, message);
         }

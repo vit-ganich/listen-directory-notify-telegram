@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
+using System.Diagnostics;
+using System.IO;
 
 namespace TestResultsReminder
 {
@@ -11,17 +13,17 @@ namespace TestResultsReminder
     {
         public static string GetCurrentTime()
         {
-            return DateTime.Now.ToString(ConfigManager.DateTimeFormat);
+            return DateTime.Now.ToString(ConfigReader.GetDateTimeFormat());
         }
 
         public static void DisplayGeneralInfo()
         {
             Console.WriteLine("------------------- Configuration info -------------------");
-            Console.WriteLine($"Directory: {ConfigManager.TestResultsDir}");
-            Console.WriteLine($"Files extension: {ConfigManager.FilesExtension.ToUpper()}");
-            Console.WriteLine($"Search timeout: {ConfigManager.SearchTimeout/1000} seconds");
-            Console.WriteLine($"Telegram message from user: +{ConfigManager.UserPhoneNumber}");
-            Console.Write($"Telegram message to {ConfigManager.RecipientType}: ");
+            Console.WriteLine($"Directory: {ConfigReader.GetTestResultsDir()}");
+            Console.WriteLine($"Files extension: {ConfigReader.GetFilesExtension().ToUpper()}");
+            Console.WriteLine($"Search timeout: {ConfigReader.GetSearchTimeout()/1000} seconds");
+            Console.WriteLine($"Telegram message from user: +{ConfigReader.GetUserPhoneNumber()}");
+            Console.Write($"Telegram message to {ConfigReader.GetRecipientType()}: ");
             Console.WriteLine(GetRecipientInfo());
             Console.WriteLine("----------------------------------------------------------\n");
         }
@@ -32,9 +34,9 @@ namespace TestResultsReminder
         /// <returns>String recipient name</returns>
         public static string GetRecipientInfo()
         {
-            if (ConfigManager.RecipientType == "user" || ConfigManager.RecipientType == "channel")
+            if (ConfigReader.GetRecipientType() == "user" || ConfigReader.GetRecipientType() == "channel")
             {
-                return $"'{ConfigManager.RecipientName}'";
+                return $"'{ConfigReader.GetRecipientName()}'";
             }
             else
             {
@@ -63,7 +65,7 @@ namespace TestResultsReminder
         {
             Console.WriteLine("Telegram code request for authorization was succesfully sent.");
             Console.WriteLine("You will receive the Telegram code via SMS, please, wait a minute...\n");
-            string code = ConfigManager.CodeFromTelegram;
+            string code = ConfigReader.GetCodeFromTelegram();
 
             while (true)
             {
@@ -86,7 +88,23 @@ namespace TestResultsReminder
         /// <returns>String[] array with folders paths</returns>
         public static string[] GetFoldersToListen()
         {
-            return ConfigManager.TestResultsDir.Split(',');
+            return ConfigReader.GetTestResultsDir();
+        }
+
+        public static void WriteResultToLog(string message)
+        {
+            var logFolder = ConfigReader.GetResultsLogFolder();
+            var logFile = ConfigReader.GetResultsLogFile();
+
+            if (!Directory.Exists(logFolder))
+            {
+                Directory.CreateDirectory(logFolder);
+            }
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(Path.Combine(logFolder, logFile), true))
+            {
+                file.WriteLine(message);
+            }
         }
     }
 }

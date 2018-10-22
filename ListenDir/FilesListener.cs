@@ -16,7 +16,7 @@ namespace TestResultsReminder
         }
         public List<string> initialDirState = new List<string>();
 
-        public string filesExtension = string.Format("*.{0}", ConfigManager.FilesExtension);
+        public string filesExtension = string.Format("*.{0}", ConfigReader.GetFilesExtension());
 
         /// <summary>
         /// Method gets the files list from the directory before the listening start.
@@ -46,7 +46,7 @@ namespace TestResultsReminder
                 if (!initialDirState.Contains(newFile))
                 {
                     initialDirState.Add(newFile);
-                    return $"New result: '{newFile}'";
+                    return $"{newFile}";
                 }   
             }
             return string.Empty;
@@ -62,6 +62,7 @@ namespace TestResultsReminder
             if (message.Length != 0)
             {
                 TelegramExtension.SendMessageAsync(message).GetAwaiter().GetResult();
+                Helper.WriteResultToLog($"{Helper.GetCurrentTime()}. {message}");
                 Console.WriteLine($"{Helper.GetCurrentTime()}. {message}");
             }
             else

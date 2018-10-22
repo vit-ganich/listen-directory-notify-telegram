@@ -34,7 +34,7 @@ namespace TestResultsReminder
                     {
                         objectDir.RemindAboutNewFile();
                     }
-                    Thread.Sleep(ConfigManager.SearchTimeout);
+                    Thread.Sleep(ConfigReader.GetSearchTimeout());
                 }
             }
             catch (Exception e)
