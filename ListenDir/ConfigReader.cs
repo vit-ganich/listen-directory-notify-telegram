@@ -9,6 +9,19 @@ namespace TestResultsReminder
     /// </summary>
     class ConfigReader
     {
+        /// <summary>
+        /// Method changes the value of specified key in App.config
+        /// </summary>
+        /// <param name="newValue">String new value</param>
+        /// <param name="key">String key to change</param>
+        public static void ChangeValueInConfig(string newValue, string key = "CodeFromTelegram")
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[key].Value = newValue;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
         #region "New test results search parameters"
         public static string GetFilesExtension()
         {

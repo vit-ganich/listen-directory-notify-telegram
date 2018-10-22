@@ -10,7 +10,7 @@ namespace TestResultsReminder
         {
             try
             {
-                Helper.DisplayGeneralInfo();
+                Display.ShowGeneralInfo();
 
                 var foldersList = Helper.GetFoldersToListen();
 

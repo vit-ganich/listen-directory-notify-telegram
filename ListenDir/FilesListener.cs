@@ -62,7 +62,7 @@ namespace TestResultsReminder
             if (message.Length != 0)
             {
                 TelegramExtension.SendMessageAsync(message).GetAwaiter().GetResult();
-                Helper.WriteResultToLog($"{Helper.GetCurrentTime()}. {message}");
+                Logger.WriteResultToLog($"{Helper.GetCurrentTime()}. {message}");
                 Console.WriteLine($"{Helper.GetCurrentTime()}. {message}");
             }
             else
