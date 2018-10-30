@@ -1,24 +1,11 @@
-﻿using System.IO;
+﻿using log4net;
 
 
 namespace TestResultsReminder
 {
     class Logger
     {
-        public static void WriteResultToLog(string message)
-        {
-            var logFolder = ConfigReader.GetResultsLogFolder();
-            var logFile = ConfigReader.GetResultsLogFile();
-
-            if (!Directory.Exists(logFolder))
-            {
-                Directory.CreateDirectory(logFolder);
-            }
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(Path.Combine(logFolder, logFile), true))
-            {
-                file.WriteLine(message);
-            }
-        }
+        public static readonly ILog Log
+            = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
     }
 }

@@ -13,6 +13,7 @@ namespace TestResultsReminder
     {
         public static TelegramClient NewClient()
         {
+            Logger.Log.Debug("Telegram client initialization.");
             return new TelegramClient(ConfigReader.GetApiId(), ConfigReader.GetApiHash());
         }
 
@@ -28,11 +29,13 @@ namespace TestResultsReminder
 
             if (!client.IsUserAuthorized())
             {
-               var hash = await client.SendCodeRequestAsync(ConfigReader.GetUserPhoneNumber());
+                Logger.Log.Debug("Telegram client is not authorized.");
+                var hash = await client.SendCodeRequestAsync(ConfigReader.GetUserPhoneNumber());
                 // authorization code will be send to the specified phone number
                 var code = Helper.ReadTelegramCodeFromConsole();
 
                 var user = await client.MakeAuthAsync(ConfigReader.GetUserPhoneNumber(), hash, code);
+                Logger.Log.Debug("Telegram authorization succeed.");
             }
         }
 
@@ -46,6 +49,7 @@ namespace TestResultsReminder
             {
                 await SendMessageToChannelAsync(message);
             }
+            
         }
 
         public static async Task SendMessageToUserAsync(string message)
@@ -59,6 +63,7 @@ namespace TestResultsReminder
             TLUser user = result.Users.OfType<TLUser>().FirstOrDefault(x => x.Username == ConfigReader.GetRecipientName());
             // send message
             await client.SendMessageAsync(new TLInputPeerUser() { UserId = user.Id }, message);
+            Logger.Log.Debug("Telegram message to User was sent successfully.");
         }
 
         public static async Task SendMessageToChannelAsync(string message)
@@ -75,6 +80,7 @@ namespace TestResultsReminder
                                     .FirstOrDefault(c => c.Title == ConfigReader.GetRecipientName());
             // send message
             await client.SendMessageAsync(new TLInputPeerChannel() { ChannelId = chat.Id, AccessHash = chat.AccessHash.Value }, message);
+            Logger.Log.Debug("Telegram message to Channel was sent successfully.");
         }
     }
 }

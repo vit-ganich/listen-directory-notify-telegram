@@ -12,7 +12,7 @@ namespace TestResultsReminder
             {
                 Display.ShowGeneralInfo();
 
-                var foldersList = Helper.GetFoldersToListen();
+                var foldersList = ConfigReader.GetTestResultsDir();
 
                 TelegramExtension.AuthUserAsync().GetAwaiter().GetResult();
 
@@ -37,9 +37,9 @@ namespace TestResultsReminder
                     Thread.Sleep(ConfigReader.GetSearchTimeout());
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Logger.Log.Error(ex);
             }
         }
     }

@@ -28,6 +28,7 @@ namespace TestResultsReminder
                 throw new DirectoryNotFoundException();
             }
             initialDirState.AddRange(Directory.GetFiles(dir, filesExtension, SearchOption.AllDirectories));
+            Logger.Log.Info($"Initial directory state for '{dir}' got succesfully.");
         }
 
         /// <summary>
@@ -62,12 +63,11 @@ namespace TestResultsReminder
             if (message.Length != 0)
             {
                 TelegramExtension.SendMessageAsync(message).GetAwaiter().GetResult();
-                Logger.WriteResultToLog($"{Helper.GetCurrentTime()}. {message}");
-                Console.WriteLine($"{Helper.GetCurrentTime()}. {message}");
+                Logger.Log.Info($"{message}");
             }
             else
             {
-                Console.WriteLine($"{Helper.GetCurrentTime()}. No updates");
+                Logger.Log.Debug("No updates");
             }
         }   
     }

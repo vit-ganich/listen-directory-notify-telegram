@@ -6,30 +6,25 @@ namespace TestResultsReminder
     {
         public static void ShowGeneralInfo()
         {
-            Console.WriteLine("------------------- Configuration info -------------------");
+            Logger.Log.Info("Configuration info -------------------");
             ShowFoldersForListen();
-            Console.WriteLine($"Files extension: {ConfigReader.GetFilesExtension().ToUpper()}");
-            Console.WriteLine($"Search timeout: {ConfigReader.GetSearchTimeout() / 1000} seconds");
-            Console.WriteLine($"Telegram message from user: +{ConfigReader.GetUserPhoneNumber()}");
-            Console.Write($"Telegram message to {ConfigReader.GetRecipientType()}: ");
-            Console.WriteLine(GetRecipientInfo());
-            Console.WriteLine("----------------------------------------------------------\n");
+            Logger.Log.Info($"Files extension: {ConfigReader.GetFilesExtension().ToUpper()}");
+            Logger.Log.Info($"Search timeout: {ConfigReader.GetSearchTimeout() / 1000} seconds");
+            Logger.Log.Info($"Telegram message from user: +{ConfigReader.GetUserPhoneNumber()}");
+            Logger.Log.Info($"Telegram message to {ConfigReader.GetRecipientType()}: ");
+            Logger.Log.Info(GetRecipientInfo());
+            Logger.Log.Info("--------------------------------------\n");
         }
 
         public static void ShowFoldersForListen()
         {
-            Console.Write("Folders to listen: ");
+            Logger.Log.Info("Folders to listen: ");
             foreach (var folder in ConfigReader.GetTestResultsDir())
             {
-                Console.Write(folder + ", ");
+                Logger.Log.Info(folder + ", ");
             }
-            Console.WriteLine();
         }
 
-        /// <summary>
-        /// Method displays recipient info according to recipient type from config
-        /// </summary>
-        /// <returns>String recipient name</returns>
         public static string GetRecipientInfo()
         {
             if (ConfigReader.GetRecipientType() == "user" || ConfigReader.GetRecipientType() == "channel")
