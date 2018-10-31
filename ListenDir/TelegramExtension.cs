@@ -13,7 +13,7 @@ namespace TestResultsReminder
     {
         public static TelegramClient NewClient()
         {
-            Logger.Log.Debug("Telegram client initialization.");
+            Logger.Log.Info("Telegram client initialization.");
             return new TelegramClient(ConfigReader.GetApiId(), ConfigReader.GetApiHash());
         }
 

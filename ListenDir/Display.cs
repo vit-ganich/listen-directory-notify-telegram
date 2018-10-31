@@ -11,8 +11,7 @@ namespace TestResultsReminder
             Logger.Log.Info($"Files extension: {ConfigReader.GetFilesExtension().ToUpper()}");
             Logger.Log.Info($"Search timeout: {ConfigReader.GetSearchTimeout() / 1000} seconds");
             Logger.Log.Info($"Telegram message from user: +{ConfigReader.GetUserPhoneNumber()}");
-            Logger.Log.Info($"Telegram message to {ConfigReader.GetRecipientType()}: ");
-            Logger.Log.Info(GetRecipientInfo());
+            Logger.Log.Info($"Telegram message to {ConfigReader.GetRecipientType()}: {GetRecipientInfo()}");
             Logger.Log.Info("--------------------------------------\n");
         }
 

@@ -27,7 +27,7 @@ namespace TestResultsReminder
                 {
                     objectDir.GetInitialDirectoryState();
                 }
-
+                Logger.Log.Info("Waiting for new files...");
                 while (true)
                 {
                     foreach (var objectDir in objectDirList)
