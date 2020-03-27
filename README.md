@@ -1,5 +1,5 @@
 # ListenDir
-Simple program, which listens the specified directories and sends notifications when a new file was created.<br />
+Simple program, which listens the specified directories and sends Telegram notifications when a new file was created.<br />
 
 Notifications are being sent using the Telegram API via TLSharp (c)
 
